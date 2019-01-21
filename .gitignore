@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/puppet,ansible,terraform
 # Edit at https://www.gitignore.io/?templates=puppet,ansible,terraform
 
+### Python ###
+__pycache__/*
+
 ### Ansible ###
 *.retry
 
