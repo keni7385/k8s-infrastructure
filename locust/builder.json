@@ -32,6 +32,10 @@
     "vm_size": "Standard_B4ms"
   }],
   "provisioners": [{
+    "type": "file",
+    "source": "locustfile.py",
+    "destination": "locustfile.py"
+  }, {
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
     "inline": [
       "apt-get update",
@@ -43,9 +47,5 @@
     ],
     "inline_shebang": "/bin/sh -x",
     "type": "shell"
-  }, {
-    "type": "file",
-    "source": "locustfile.py",
-    "destination": "locustfile.py"
   }]
 }

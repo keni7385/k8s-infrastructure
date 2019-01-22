@@ -41,7 +41,7 @@ packer validate builder.json
 ```
 
 ```bash
-packer build builder.json | tee packer_output.txt
+packer build builder.json [| tee packer_output.txt]
 ```
 
 ### Provision the VM with Terraform
