@@ -1,0 +1,5 @@
+export ARM_CLIENT_ID=0
+export ARM_CLIENT_SECRET=0
+export ARM_SUBSCRIPTION_ID=0
+export TENANT_ID=0
+
