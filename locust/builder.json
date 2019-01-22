@@ -3,7 +3,9 @@
     "client_id": "{{env `ARM_CLIENT_ID`}}",
     "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
     "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
-    "tenant_id": "{{env `ARM_TENANT_ID`}}"
+    "tenant_id": "{{env `ARM_TENANT_ID`}}",
+    "image_name": "LocustImage",
+    "image_resource_group_name": "locust_group"
   },
   "builders": [{
     "type": "azure-arm",
@@ -18,8 +20,8 @@
     "image_offer": "UbuntuServer",
     "image_sku": "18.04-LTS",
 
-    "managed_image_resource_group_name": "locust_group",
-    "managed_image_name": "LocustImage",
+    "managed_image_resource_group_name": "{{user `image_resource_group_name`}}",
+    "managed_image_name": "{{user `image_name`}}",
 
     "azure_tags": {
         "dept": "engineering",
@@ -34,12 +36,16 @@
     "inline": [
       "apt-get update",
       "apt-get upgrade -y",
-      "apt-get -y install python3-pip",
+      "apt-get -y install python-pip",
       "pip install locustio",
 
       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
     "inline_shebang": "/bin/sh -x",
     "type": "shell"
+  }, {
+    "type": "file",
+    "source": "locustfile.py",
+    "destination": "locustfile.py"
   }]
 }
