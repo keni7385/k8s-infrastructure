@@ -55,3 +55,14 @@ override.tf.json
 # !example_override.tf
 
 # End of https://www.gitignore.io/api/puppet,ansible,terraform
+
+
+### Packer ###
+# Cache objects
+packer_cache/
+
+# For built boxes
+*.box
+
+## Ignore ids.sh file, to avoid IDs tracking
+ids.sh
