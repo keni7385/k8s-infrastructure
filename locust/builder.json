@@ -4,8 +4,8 @@
     "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
     "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
     "tenant_id": "{{env `ARM_TENANT_ID`}}",
-    "image_name": "LocustImage",
-    "image_resource_group_name": "locust_group"
+    "image_name": "locust",
+    "image_resource_group_name": "LocustIMG"
   },
   "builders": [{
     "type": "azure-arm",

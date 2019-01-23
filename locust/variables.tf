@@ -1,16 +1,16 @@
 variable "image_resource_group_name" {
   description = "The resource group name of VM image"
-  default     = "locust_group"
+  default     = "LocustIMG"
 }
 
 variable "image_name" {
   description = "The image name to install in the VM disk"
-  default     = "LocustImage"
+  default     = "locust"
 }
 
 variable "resource_group_name" {
-  description = "The locust resource group name"
-  default     = "locust_group"
+  description = "The locust VM resource group name"
+  default     = "LocustVM"
 }
 
 variable "resource_group_location" {
