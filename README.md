@@ -28,7 +28,15 @@ Useful commands:
 
 ## API setup
 
-Una tantum, edit the file `ids.sh` (updates are ignored by the gitignore in this repo).
+Create the file `ids.sh` with:
+
+``` bash
+echo "export ARM_CLIENT_ID=0\n"\
+     "export ARM_CLIENT_SECRET=0\n"\
+     "export ARM_SUBSCRIPTION_ID=0\n"\
+     "export ARM_TENANT_ID=0" > ids.sh
+```
+(updates of this file are ignored)
 
 Replace `ARM_CLIENT_ID` with `appId` from the previous command (or use exhisting ones if you already have a service principal), `ARM_CLIENT_SECRET` with `password`, `TENANT_ID` with your `tenant` (you can get it also from `az account show`).
 
