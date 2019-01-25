@@ -78,19 +78,24 @@ terraform apply out.plan
 
 ## Test the cluster
 
-Get the Kubernetes configuration from the Terraform state and store it in a file that kubectl can read.
+By applying, Terraform creates the k8s config file in `./azurek8s`. Check whether the configuration is fine, otherwise recreate it with:
 ```bash
 echo "$(terraform output kube_config)" > ./azurek8s
 ```
 
-Set an environment variable so that kubectl picks up the correct config.
+Set an environment variable so that kubectl picks up the correct config (consider in saving the current `$KUBECONFIG`).
 ```bash
-export KUBECONFIG=./azurek8s
+export KUBECONFIG="$(pwd)/azurek8s"
 ```
 
 ```bash
 kubectl get nodes
 ```
+
+## Kubernetes dashboard
+Run `kubectl proxy` and access to:
+  - http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+  - or http://localhost:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/
 
 ## Destroy the cluster
 

@@ -52,10 +52,17 @@ You should already have the VM image built, so you can start provisioning the VM
 source ../ids.sh
 ```
 
-Firstly initialise Terraform, to download possible plugins and validate your files:
+Firstly initialise Terraform, to download possible plugins and validate your files. Use a shared state, since we are in a multi-person environment (refer to [Shared state](/k8s-cluster/README.md/#shared-state) for more details).
 
+Variable `$an` contains the name of storage account (e.g. `tfstatestorage20190124`).
 ```bash
-terraform init
+terraform init \
+    -backend-config="storage_account_name=tfstate-storage" \
+    -backend-config="container_name=tfstate-container" \
+    -backend-config="access_key=$(az storage account keys list \
+        --account-name tfstate-storage \
+        --resource-group tfstate-group | grep value | head -1 | cut -d'"' -f4)" \
+    -backend-config="key=locust.tfstate" 
 ```
 
 Then you can see an execution plan with the changes that will be applied to your infrastructure:

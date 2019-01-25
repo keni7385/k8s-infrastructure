@@ -33,4 +33,18 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     tags {
         Environment = "Development"
     }
+
+    provisioner "local-exec" {
+        command = "echo \"$(terraform output kube_config)\" > ./azurek8s"
+    }
+
+    provisioner "local-exec" {
+        when = "destroy"
+        command = "rm ./azurek8s"
+    }
+
+    /*
+    provisioner "local-exec" {
+        command = "kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml"
+    }*/
 }
