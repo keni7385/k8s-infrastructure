@@ -51,6 +51,7 @@ az group delete --name tfstate-group
 
 Variable `$an` contains the name of storage account.
 ```bash
+an=$(az storage account list --output yaml | grep name -m 1 | cut -f2 -d: | sed 's/ //g')
 terraform init \
     -backend-config="storage_account_name=$an" \
     -backend-config="container_name=tfstate-container" \
