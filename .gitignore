@@ -30,6 +30,9 @@ vendor/*
 # Local .terraform directories
 **/.terraform/*
 
+# Plan files
+*.plan
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
