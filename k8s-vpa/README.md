@@ -19,6 +19,23 @@ If the metric server is not deployed by default:
 ```bash
 git clone git@github.com:kubernetes-incubator/metrics-server
 cd metrics-server
+```
+
+Add the flag to avoid certificates (NOT for production environments), by adding the flag `--kubelet-insecure-tls` to `metrics-server/deploy/1.8+/metrics-server-deployment.yaml`. Edit the file and add the `command` field to the first item of `containers`:
+```yaml
+# File: ./deploy/1.8+/metrics-server-deployment.yaml
+# [...]
+       containers:
+       - name: metrics-server
+         image: k8s.gcr.io/metrics-server-amd64:v0.3.1
+         command:
+         - /metrics-server
+         - --kubelet-insecure-tls
+# [...]
+```
+
+Then you are ready for:
+```bash
 kubectl create -f deploy/1.8+/
 ```
 
