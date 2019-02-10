@@ -59,7 +59,6 @@ override.tf.json
 
 # End of https://www.gitignore.io/api/puppet,ansible,terraform
 
-
 ### Packer ###
 # Cache objects
 packer_cache/
@@ -69,3 +68,7 @@ packer_cache/
 
 ## Ignore ids.sh file, to avoid IDs tracking
 ids.sh
+
+## Ignore metrics-server and VPA repositories
+metrics-server/
+autoscaler-vertical-pod-autoscaler*/
