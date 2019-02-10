@@ -69,13 +69,13 @@ terraform init \
 Then you can see an execution plan with the changes that will be applied to your infrastructure:
 
 ```bash
-terraform plan
+terraform plan -out out.plan
 ```
 
 Then, if there are changes, apply them with:
 
 ```bash
-terraform apply
+terraform apply out.plan
 ```
 
 Once changes have been applied, you can login to the VM:
