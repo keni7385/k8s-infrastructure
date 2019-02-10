@@ -17,11 +17,11 @@ spec:
         image: redis
         resources:
           requests:
-            cpu: 100m
-            memory: 128Mi
+            cpu: 30m
+            memory: 64Mi
           limits:
-            cpu: 110m
-            memory: 256Mi
+            cpu: 50m
+            memory: 128Mi
         ports:
         - containerPort: 6379
           name: redis
@@ -55,11 +55,11 @@ spec:
         image: microsoft/azure-vote-front:v1
         resources:
           requests:
-            cpu: 100m
-            memory: 128Mi
+            cpu: 30m
+            memory: 64Mi
           limits:
-            cpu: 110m
-            memory: 256Mi
+            cpu: 50m
+            memory: 128Mi
         ports:
         - containerPort: 80
         env:
