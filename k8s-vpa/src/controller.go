@@ -5,8 +5,7 @@ import (
 	"math"
 )
 
-var (
-	// constant variables
+const (
 	P_NOM = 0.8
 	SLA = 1.0 // set point of the system
 	A = 0.5 // value from 0 to 1 to change how the control is conservative
@@ -15,9 +14,10 @@ var (
 	A3_NOM = 0.5658
 	CORE_MIN = 1.0
 	CORE_MAX = 2.0
+)
 
-	// other variables
-	uiOld = 0.0 // type: float64
+var (
+	uiOld = 0.0
 )
 
 func main() {
