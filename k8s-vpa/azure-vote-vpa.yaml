@@ -1,10 +1,11 @@
-apiVersion: "autoscaling.k8s.io/v1beta1"
+apiVersion: "autoscaling.k8s.io/v1beta2"
 kind: VerticalPodAutoscaler
 metadata:
   name: azure-vote-front-vpa
 spec:
-  selector:
-    matchLabels:
-      app: azure-vote-front
+  targetRef:
+    apiVersion: "extensions/v1beta1"
+    kind:       Deployment
+    name:       azure-vote-front
   updatePolicy:
     updateMode: "Auto"
