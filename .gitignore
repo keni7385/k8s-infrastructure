@@ -71,4 +71,4 @@ ids.sh
 
 ## Ignore metrics-server and VPA repositories
 metrics-server/
-autoscaler-vertical-pod-autoscaler*/
+autoscaler/

@@ -52,8 +52,7 @@ Then open in your browser `http://127.0.0.1:8001/apis/metrics.k8s.io/v1beta1`. I
 Reference [kubernetes/autoscaler/vertical-pod-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
 
 ```bash
-wget https://github.com/kubernetes/autoscaler/archive/vertical-pod-autoscaler-0.3.1.zip
-unzip vertical-pod-autoscaler-0.3.1.zip '*/vertical-pod-autoscaler/*'
+git clone https://github.com/lorisrossi/autoscaler
 cd */vertical-pod-autoscaler
 ./hack/vpa-up.sh
 ```
