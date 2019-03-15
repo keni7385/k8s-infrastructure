@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: addon-http-application-routing
+  name: app-ingress
+spec:
+  rules:
+  - host: nginx.f735e99c40b84e0f94d5.eastus.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: appsvc1
+          servicePort: 80
+        path: /app1
+      - backend:
+          serviceName: appsvc2
+          servicePort: 80
+        path: /app2

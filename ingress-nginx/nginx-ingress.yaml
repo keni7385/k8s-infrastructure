@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: nginx.f735e99c40b84e0f94d5.eastus.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-ingress
+          servicePort: 18080
+        path: /nginx_status
