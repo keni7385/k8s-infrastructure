@@ -1,3 +1,5 @@
-kubectl delete -f ../deploy/manifests/
+SCRIPT_ROOT=$(dirname ${BASH_SOURCE})/..
 
-kubectl -n custom-metrics delete secret tls cm-adapter-serving-certs
+kubectl delete -f ${SCRIPT_ROOT}/deploy/manifests/
+
+kubectl -n custom-metrics delete secret cm-adapter-serving-certs

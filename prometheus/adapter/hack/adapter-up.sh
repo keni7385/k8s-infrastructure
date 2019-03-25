@@ -1,3 +1,5 @@
+SCRIPT_ROOT=$(dirname ${BASH_SOURCE})/..
+
 kubectl create namespace custom-metrics
 
 # create certificates
@@ -7,4 +9,4 @@ echo '{"signing":{"default":{"expiry":"43800h","usages":["signing","key encipher
 kubectl -n custom-metrics create secret tls cm-adapter-serving-certs --cert=./serving-ca.crt --key=./serving-ca.key
 rm serving-ca-config.json serving-ca.crt serving-ca.key
 
-kubectl create -f ../deploy/manifests/
+kubectl create -f ${SCRIPT_ROOT}/deploy/manifests/
