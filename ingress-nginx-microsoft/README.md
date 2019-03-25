@@ -23,6 +23,19 @@ Then install `helm` on your cluster:
 helm init --service-account tiller
 ```
 
+Finally patch the `tiller`'s deployment:
+
+```bash
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```
+
+By doing `helm version`, you should see something similar to:
+
+```
+Client: &version.Version{SemVer:"v2.13.0", GitCommit:"79d07943b03aea2b76c12644b4b54733bc5958d6", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.13.0", GitCommit:"79d07943b03aea2b76c12644b4b54733bc5958d6", GitTreeState:"clean"}
+```
+
 *Warning*: don't use this setup in production, check the official documentation for that.
 
 ## Install the Ingress controller
