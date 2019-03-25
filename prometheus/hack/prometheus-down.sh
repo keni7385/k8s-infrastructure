@@ -11,5 +11,3 @@ kubectl delete -f ${SCRIPT_ROOT}/deploy/servicemonitor-sample-app.yaml
 kubectl delete -f ${SCRIPT_ROOT}/deploy/rbac-prometheus-pods.yaml
 kubectl delete -f ${SCRIPT_ROOT}/deploy/prometheus.yaml
 kubectl delete -f ${SCRIPT_ROOT}/deploy/service-prometheus.yaml
-
-# kubectl delete namespace prom

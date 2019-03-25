@@ -1,7 +1,5 @@
 SCRIPT_ROOT=$(dirname ${BASH_SOURCE})/..
 
-# kubectl create namespace prom
-
 kubectl create -f ${SCRIPT_ROOT}/deploy/prom-operator.yaml
 
 kubectl create -f ${SCRIPT_ROOT}/deploy/sample-app.deploy.yaml
