@@ -72,3 +72,4 @@ ids.sh
 ## Ignore metrics-server and VPA repositories
 metrics-server/
 autoscaler/
+k8s-cluster/azurek8s
