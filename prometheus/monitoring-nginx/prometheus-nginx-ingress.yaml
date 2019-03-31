@@ -1,11 +1,11 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
-  name: prometheus
+  name: nginx-ingress
 spec:
   serviceMonitorSelector:
     matchLabels:
-      app: sample-app
+      app: nginx-ingress
   resources:
     requests:
       memory: 400Mi
