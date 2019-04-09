@@ -12,9 +12,15 @@ For VPA we requires:
 
 Server to collect pod metrics.
 
-## Deploy the server
+### Deploy the server
 
-If the metric server is not deployed by default:
+The metric server should be deployed by default. Check with:
+```bash
+kubectl get svc -n kube-system metrics-server
+```
+If you receive a response, jump to [Install VPA](#vpa)
+
+Otherwise go on:
 
 ```bash
 git clone git@github.com:kubernetes-incubator/metrics-server
