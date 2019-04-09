@@ -6,14 +6,21 @@ metadata:
 data:
   config.yaml: |
     rules:
-    - seriesQuery: 'http_requests_total{namespace!="",pod!=""}'
+    - seriesQuery: 'nginx_exp_http_response_time_seconds{namespace!="",pod!="",status="200"}'
       resources:
         overrides:
-          namespace:
-            resource: namespace
-          pod:
-            resource: pod
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
       name:
-        matches: "^(.*)_total"
-        as: "${1}_per_second"
+        matches: "^(.*)$"
+        as: "response_time"
+      metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+    - seriesQuery: 'nginx_exp_http_response_count_total{namespace!="",pod!="",status="200"}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^(.*)$"
+        as: "response_count"
       metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
