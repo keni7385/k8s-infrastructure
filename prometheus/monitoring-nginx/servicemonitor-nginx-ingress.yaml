@@ -13,3 +13,4 @@ spec:
     - nginx-ingress
   endpoints: 
   - port: prometheus
+  - port: exporter

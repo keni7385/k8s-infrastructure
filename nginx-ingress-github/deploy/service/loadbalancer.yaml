@@ -24,5 +24,9 @@ spec:
     targetPort: 9113
     protocol: TCP
     name: prometheus
+  - port: 4040
+    targetPort: 4040
+    protocol: TCP
+    name: exporter
   selector:
     app: nginx-ingress
