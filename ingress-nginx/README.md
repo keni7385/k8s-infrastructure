@@ -37,6 +37,12 @@ kubectl exec -it $POD_NAME -n $POD_NAMESPACE -- /nginx-ingress-controller --vers
 az aks enable-addons --resource-group k8sClusterGroup --name k8s-cluster --addons http_application_routing
 ```
 
+Retrieve the DNS zone name:
+
+```bash
+ az aks show --resource-group k8sClusterGroup --name k8s-cluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+```
+
 ## Create a Load Balancer
 
 ### Toy apps
@@ -57,6 +63,12 @@ We will need 3 `Ingress` resources, one for the load balancer (shared by the two
 ```bash
 kubectl create -f nginx-ingress.yaml -n=ingress-nginx
 kubectl create -f app-ingress.yaml
+```
+
+Remember to add the following annotation to ingresses:
+```yaml
+annotations:
+  kubernetes.io/ingress.class: addon-http-application-routing
 ```
 
 Last step is to expose the load balancer for externale access:
