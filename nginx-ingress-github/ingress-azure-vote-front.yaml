@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: azure-vote-front
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: azure-vote-front.9a3631be799c44b19394.eastus.aksapp.io
+    http:
+      paths:
+      - path: /app1
+        backend:
+          serviceName: azure-vote-front
+          servicePort: 80
