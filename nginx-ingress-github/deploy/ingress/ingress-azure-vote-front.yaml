@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: azure-vote-front
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - azure-vote.eastus.cloudapp.azure.com
+    secretName: azure-vote-tls
+  rules:
+  - host: azure-vote.eastus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: azure-vote-front
+          servicePort: 80
