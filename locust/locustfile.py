@@ -1,8 +1,12 @@
 # to install locust: pip install locustio
 
+import warnings
+warnings.filterwarnings("ignore") # used to suppress STDERR messages
+
 from locust import HttpLocust, TaskSet, task
 class UserBehavior(TaskSet):
     def on_start(self):
+        self.client.verify = False
         self.client.get("/")
     
     @task
