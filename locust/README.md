@@ -2,7 +2,7 @@
 
 We use [locust.io](https://www.locust.io/) to do load testing on services.
 
-# Setup
+## Setup
 
 `python3` and `PyPi` required.
 
@@ -20,7 +20,7 @@ Start the webui:
 locust -f locustfile.py -H https://ADDRESS
 ```
 
-Start headless:
+Start headless (necessary if using VM):
 
 ``` bash
 locust -f locustfile.py -H https://ADDRESS -c NUM_CLIENTS -r HATCH_RATE --no-web
@@ -83,6 +83,13 @@ Once changes have been applied, you can login to the VM:
 ```bash
 ssh azureuser@$(terraform output locustvm_public_ip) [-i ~/.ssh/azure_vm]
 ```
+
+You will find `locustfile.py` in `/usr/locustfile.py`, hence to use Locust you can run
+
+```bash
+locust -f /usr/locustfile.py -H https://ADDRESS -c NUM_CLIENTS -r HATCH_RATE --no-web
+```
+
 
 ### Tear down the VM
 
