@@ -1,5 +1,7 @@
 # Ingress
 
+CANNATO, addon-http-application-routing is actually an nginx-ingress
+
 ## Installing a Ingress Controller
 
 We chose `nginx-controller`.
@@ -31,18 +33,6 @@ POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-
 kubectl exec -it $POD_NAME -n $POD_NAMESPACE -- /nginx-ingress-controller --version
 ```
 
-## Enable `http_application_routing`
-
-```bash
-az aks enable-addons --resource-group k8sClusterGroup --name k8s-cluster --addons http_application_routing
-```
-
-Retrieve the DNS zone name:
-
-```bash
- az aks show --resource-group k8sClusterGroup --name k8s-cluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
-```
-
 ## Create a Load Balancer
 
 ### Toy apps
@@ -68,11 +58,51 @@ kubectl create -f app-ingress.yaml
 Remember to add the following annotation to ingresses:
 ```yaml
 annotations:
-  kubernetes.io/ingress.class: addon-http-application-routing
+  kubernetes.io/ingress.class: nginx
 ```
 
 Last step is to expose the load balancer for externale access:
 
 ```bash
 kubectl create -f nginx-ingress-controller-service.yaml -n=ingress-nginx
+```
+
+## Addon HTTP routing
+
+(Just as reference) Is an ingress controller based on nginx  provided from Azure. It can help to espose easier services throught an host name.
+
+This is an alternative to install `nginx` directly, but didn't work in our case, since we cannot modify the configurations and parameters.
+
+### Enable `http_application_routing`
+
+```bash
+az aks enable-addons --resource-group k8sClusterGroup --name k8s-cluster --addons http_application_routing
+```
+
+Retrieve the DNS zone name:
+
+```bash
+ az aks show --resource-group k8sClusterGroup --name k8s-cluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+```
+
+If with previous command the host retrivede is `HOST_RETRIEVED`, then set the host in the ingress file as `name.HOST_RETRIEVED`. In addition, set the class of nginx to `addon-http-application-routing` with the annotation:
+
+```yaml
+annotations:
+  kubernetes.io/ingress.class: addon-http-application-routing
+```
+
+### Disabling Addon HTTP routing
+
+```bash
+az aks disable-addons --addons http_application_routing --resource-group k8sClusterGroup --name k8s-cluster --no-wait
+```
+
+Remove some resources that left around. Look for `addon-http-application-routing` resources in:
+
+```bash
+kubectl get deployments --namespace kube-system
+kubectl get services --namespace kube-system
+kubectl get configmaps --namespace kube-system
+kubectl get secrets --namespace kube-system
 ```
