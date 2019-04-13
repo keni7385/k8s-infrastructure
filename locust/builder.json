@@ -34,7 +34,7 @@
   "provisioners": [{
     "type": "file",
     "source": "locustfile.py",
-    "destination": "locustfile.py"
+    "destination": "/tmp/locustfile.py"
   }, {
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
     "inline": [
@@ -42,6 +42,7 @@
       "apt-get upgrade -y",
       "apt-get -y install python-pip",
       "pip install locustio",
+      "mv /tmp/locustfile.py /usr/locustfile.py",
 
       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
