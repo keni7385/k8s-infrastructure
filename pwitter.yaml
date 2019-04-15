@@ -51,7 +51,7 @@ spec:
         app: pwitter-front
     spec:
       containers:
-      - name: pwitter
+      - name: pwitter-front
         image: keni7385/pwitter
         resources:
           requests:
