@@ -14,7 +14,7 @@ data:
       name:
         matches: "^(.*)$"
         as: "response_time"
-      metricsQuery: '<<.Series>>{namespace!="",pod!="",status="200",method="GET", quantile="0.9"}'
+      metricsQuery: '<<.Series>>{namespace!="",pod!="",status="201",method="POST", quantile="0.9"}'
     - seriesQuery: 'nginx_exp_http_response_count_total'
       resources:
         overrides:
@@ -23,4 +23,4 @@ data:
       name:
         matches: "^(.*)$"
         as: "response_count"
-      metricsQuery: '<<.Series>>{namespace!="",pod!="",status="200",method="GET"}'
+      metricsQuery: '<<.Series>>{namespace!="",pod!="",status="201",method="POST"}'
