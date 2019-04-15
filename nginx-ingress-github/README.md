@@ -40,8 +40,7 @@ We assume that the DNS name will be `DNSNAME="azure-vote"`. Set it different oth
 Set also the public IP of the nginx ingress controller and register the name with:
 
 ```bash
-export INGRESS_CONTROLLER_IP=......
-./hack/public-dns-ip.sh
+INGRESS_CONTROLLER_IP=XXX.XXX.XXX.XXX ./hack/public-dns-ip.sh
 ```
 
 Annotate the output fqdn address and change it in `deploy/ingress/ingress-azure-vote-front.yaml` in the `hosts` item and `host` property of the rule.
@@ -57,6 +56,26 @@ kubectl apply -f deploy/ingress/ingress-azure-vote-front.yaml`
 
 Finally query the specified host.
 
-## Without CN entry in DNS
+### Without CN entry in DNS
 
 Check [this](https://docs.microsoft.com/en-us/azure/aks/ingress-own-tls) out.
+
+## Pwitter
+
+Load app, dns record, secret and ingress
+
+```bash
+kubectl create -f ../pwitter.yaml
+INGRESS_CONTROLLER_IP=X.X.X.X DNSNAME=pwitter ./hack/public-dns-ip.sh
+ADDR=pwitter.eastus.cloudapp.azure.com NAME=pwitter-tls ./hack/create-ingress-tls-secret.sh
+kubectl apply -f deploy/ingress/ingress-pwitter-front.yaml
+```
+
+Test with `curl` `GET` (memory intensive) and `POST` (cpu intensive):
+
+```bash
+curl https://pwitter.eastus.cloudapp.azure.com/pweets -k
+curl https://pwitter.eastus.cloudapp.azure.com/pweets -k -X POST -d 'user="..."&body="An English text"'
+```
+
+Pwitter reference in [deib-polimi/pwitter](https://github.com/deib-polimi/pwitter).

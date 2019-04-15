@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pwitter-front
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - pwitter.eastus.cloudapp.azure.com
+    secretName: pwitter-tls
+  rules:
+  - host: pwitter.eastus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pwitter-front
+          servicePort: 80
