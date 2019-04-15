@@ -1,5 +1,14 @@
-ADDR=azure-vote.eastus.cloudapp.azure.com
-NAME=azure-vote-tls
+#!/bin/bash
+
+if [[ -z "${NAME}" ]]; then
+   NAME=azure-vote-tls
+   echo 
+fi
+
+if [[ -z "${ADDR}" ]]; then
+   ADDR=azure-vote.eastus.cloudapp.azure.com
+   echo "Defaul tls cert ADDR=${ADDR}"
+fi
 
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out "$NAME.crt" \
