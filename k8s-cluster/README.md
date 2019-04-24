@@ -49,6 +49,17 @@ az group delete --name tfstate-group
 
 ## Init the cluster
 
+### Choose node size and other variables
+
+Check `variables.tf` to see all the variables. There are [several ways](https://learn.hashicorp.com/terraform/getting-started/variables.html) to overwrite them, 
+for example to have a bigger vm for nodes:
+
+```bash
+export TF_VAR_vm_size=Standard_B8ms
+```
+
+### Steps
+
 Variable `$an` contains the name of storage account.
 ```bash
 an=$(az storage account list --output yaml | grep name -m 1 | cut -f2 -d: | sed 's/ //g')

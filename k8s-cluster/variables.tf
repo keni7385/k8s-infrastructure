@@ -5,6 +5,10 @@ variable "agent_count" {
     default = 3
 }
 
+variable "vm_size" {
+    default = "Standard_DS1_v2"
+}
+
 variable "ssh_public_key" {
     default = "~/.ssh/azure_vm.pub"
 }
