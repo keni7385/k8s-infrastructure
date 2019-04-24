@@ -52,3 +52,18 @@ Name               CloudName    SubscriptionId                        State    I
 kub                AzureCloud   11111111-1111-1111-1111-111111111111  Enabled  True
 Microsoft Imagine  AzureCloud   22222222-2222-2222-2222-222222222222  Enabled  False
 ```
+
+## Run the components
+
+There are several components for this project.
+After [creating the cluster](\k8s-cluster\README.md), you can start all of them by:
+
+```bash
+./components-up.sh
+```
+
+And stop them with:
+
+```bash
+./components-down.sh
+```
