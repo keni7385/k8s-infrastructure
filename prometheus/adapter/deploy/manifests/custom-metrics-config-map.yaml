@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     rules:
-    - seriesQuery: 'nginx_exp_http_response_time_seconds'
+    - seriesQuery: 'nginx_exp_http_response_time_seconds_hist_bucket'
       resources:
         overrides:
           namespace: {resource: "namespace"}
@@ -14,7 +14,7 @@ data:
       name:
         matches: "^(.*)$"
         as: "response_time"
-      metricsQuery: '<<.Series>>{namespace!="",pod!="",status="201",method="POST", quantile="0.9"}'
+      metricsQuery: 'histogram_quantile(0.9, rate(<<.Series>>{namespace!="",pod!="",status="201",method="POST"}[20s]))'
     - seriesQuery: 'nginx_exp_http_response_count_total'
       resources:
         overrides:
