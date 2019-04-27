@@ -6,7 +6,7 @@ variable "agent_count" {
 }
 
 variable "vm_size" {
-    default = "Standard_DS1_v2"
+    default = "Standard_B8ms"
 }
 
 variable "ssh_public_key" {
