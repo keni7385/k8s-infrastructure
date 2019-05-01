@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: pwitter-front
-        image: keni7385/pwitter
+        image: keni7385/pwitter:no_db
         resources:
           requests:
             cpu: 30m
