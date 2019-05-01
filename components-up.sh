@@ -77,6 +77,9 @@ set +o xtrace
 
 header "Prometheus up"
 ./prometheus/hack/prometheus-up.sh
+# prometheus down and then up because of a little bug on reading yamls
+./prometheus/hack/prometheus-down.sh
+./prometheus/hack/prometheus-up.sh
 kubectl create -f prometheus/monitoring-nginx/prometheus-nginx-ingress.yaml 
 
 header "Prometheus adapter up"
