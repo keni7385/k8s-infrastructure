@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     rules:
-    - seriesQuery: 'nginx_exp_http_response_time_seconds_hist_bucket'
+    - seriesQuery: 'nginx_exp_http_upstream_time_seconds_hist_bucket'
       resources:
         overrides:
           namespace: {resource: "namespace"}

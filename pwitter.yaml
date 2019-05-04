@@ -52,14 +52,14 @@ spec:
     spec:
       containers:
       - name: pwitter-front
-        image: keni7385/pwitter:no_db
+        image: keni7385/pwitter:no_db_no_gunicorn
         resources:
           requests:
             cpu: 30m
-            memory: 64Mi
+            memory: 500Mi
           limits:
             cpu: 2
-            memory: 128Mi
+            memory: 1Gi
         ports:
         - containerPort: 5000
         env:
