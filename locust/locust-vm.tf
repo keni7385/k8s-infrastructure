@@ -94,7 +94,7 @@ resource "azurerm_virtual_machine" "locustvm" {
   location              = "${azurerm_resource_group.locustgroup.location}"
   resource_group_name   = "${azurerm_resource_group.locustgroup.name}"
   network_interface_ids = ["${azurerm_network_interface.locustnic.id}"]
-  vm_size               = "Standard_F16s_v2"
+  vm_size               = "Standard_F16s"
 
   storage_os_disk {
     name              = "locust-os-disk"
