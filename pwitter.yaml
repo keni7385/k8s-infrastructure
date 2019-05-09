@@ -41,7 +41,7 @@ kind: Deployment
 metadata:
   name: pwitter-front
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: pwitter-front
@@ -52,14 +52,14 @@ spec:
     spec:
       containers:
       - name: pwitter-front
-        image: keni7385/pwitter:no_db_no_gunicorn
+        image: keni7385/pwitter:no_db_no_gunicorn_processes
         resources:
           requests:
             cpu: 30m
             memory: 500Mi
           limits:
-            cpu: 2
-            memory: 1Gi
+            cpu: 5
+            memory: 25Gi
         ports:
         - containerPort: 5000
         env:
