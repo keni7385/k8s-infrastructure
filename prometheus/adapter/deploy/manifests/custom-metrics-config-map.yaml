@@ -14,7 +14,7 @@ data:
       name:
         matches: "^(.*)$"
         as: "response_time"
-      metricsQuery: 'histogram_quantile(0.9, rate(<<.Series>>{namespace!="",pod!="",status="201",method="POST"}[20s]))'
+      metricsQuery: 'histogram_quantile(0.5, rate(<<.Series>>{namespace!="",pod!="",status="201",method="POST"}[20s]))'
     - seriesQuery: 'nginx_exp_http_response_count_total'
       resources:
         overrides:
