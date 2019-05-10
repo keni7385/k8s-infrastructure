@@ -1,0 +1,3 @@
+[submodule "autoscaler"]
+	path = k8s-vpa/autoscaler
+	url = git@github.com:lorisrossi/autoscaler
