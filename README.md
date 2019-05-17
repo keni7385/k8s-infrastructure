@@ -2,9 +2,8 @@
 
 This repository contains the source code of our research project. Additional repositories for patched components can be find at:
 
-  – Modified version of the Pod Autoscaler: [https://github.com/lorisrossi/autoscaler]()
-  – Modified version of Nginx Ingress Controller implementation: [https://github.com/keni7385/kubernetes-ingress]()
-    In which we added the modified version of the Prometheus Nginx Log Exporter: [https://github.com/keni7385/prometheus-nginxlog-exporter]()
+  - Modified version of the Pod Autoscaler: [https://github.com/lorisrossi/autoscaler]()
+  - Modified version of Nginx Ingress Controller implementation: [https://github.com/keni7385/kubernetes-ingress]() <br> In which we added the modified version of the Prometheus Nginx Log Exporter: [https://github.com/keni7385/prometheus-nginxlog-exporter]()
 
 Commands listed here are for the Azure CLI `az`, but all the file and configurations are cloud-indipendent.
 
